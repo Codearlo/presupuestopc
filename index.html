@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Armador de Presupuesto PC</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1><i class="fas fa-desktop"></i> Armador de Presupuesto PC</h1>
+    <p>Crea y calcula el costo de tu PC ideal en soles peruanos (S/)</p>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <div class="left-section">
+        <h2>Mi Presupuesto</h2>
+        <form id="budgetForm">
+          <div class="form-group">
+            <label>Categoría</label>
+            <select name="category" id="componentCategory">
+              <option value="cpu">CPU (Procesador)</option>
+              <option value="gpu">GPU (Tarjeta Gráfica)</option>
+              <option value="ram">RAM</option>
+              <option value="case">Case</option>
+              <option value="ssd">SSD</option>
+              <option value="placa">Placa Base</option>
+              <option value="psu">PSU (Fuente de Poder)</option>
+              <option value="cooler">Cooler</option>
+              <option value="otros">Otros</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Nombre del Componente</label>
+            <input type="text" name="name" id="componentName" placeholder="Ej: Intel Core i5-12400F">
+          </div>
+          <div class="form-group">
+            <label>Precio (S/)</label>
+            <input type="number" name="price" id="componentPrice" step="0.01" min="0" placeholder="0.00">
+          </div>
+          <button type="button" onclick="addComponent()">Agregar Componente</button>
+        </form>
+      </div>
+      <div class="right-section">
+        <h2>Resumen del Presupuesto</h2>
+        <div class="summary">
+          <div class="summary-item">
+            <span>Subtotal:</span>
+            <span id="subtotal">S/ 0.00</span>
+          </div>
+          <div class="summary-item">
+            <span>IGV (18%):</span>
+            <span id="igv">S/ 0.00 (incluido)</span>
+          </div>
+          <hr>
+          <div class="summary-item">
+            <span>Total:</span>
+            <span id="total">S/ 0.00</span>
+          </div>
+        </div>
+        <div class="summary-note">
+          <i class="fas fa-info-circle"></i>
+          Los precios incluyen IGV. Puedes editar o eliminar componentes en la lista de abajo.
+        </div>
+      </div>
+    </div>
+
+    <div class="selected-components">
+      <h2>Componentes Seleccionados</h2>
+      <ul class="component-list" id="componentList"></ul>
+    </div>
+  </div>
+
+  <div id="printable" style="display:none;"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
