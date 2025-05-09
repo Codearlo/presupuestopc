@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  font-weight: bold;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
@@ -144,7 +143,7 @@ input[type="number"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 select {
@@ -264,11 +263,22 @@ button:hover {
   border: 1px solid var(--glass-border);
 }
 
+/* Estilos para la lista de componentes */
 .component-list {
-  list-style-type: none;
   padding: 0;
 }
 
+/* Estilo para las categorías de componentes */
+.component-category {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 10px;
+}
+
+/* Estilo para cada ítem de componente */
 .component-item {
   display: flex;
   justify-content: space-between;
@@ -280,26 +290,64 @@ button:hover {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid var(--glass-border);
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .component-item:hover {
   transform: translateX(5px);
   background-color: rgba(60, 60, 60, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.component-item span {
-  font-weight: 500;
+/* Detalles del componente (nombre y precio) */
+.component-details {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
 }
 
-.component-item button {
-  width: auto;
-  padding: 8px 15px;
-  margin-left: 15px;
+.component-name {
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin-bottom: 5px;
+}
+
+.component-price {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* Acciones del componente (botones) */
+.component-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.component-actions button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn {
+  background-color: rgba(0, 123, 255, 0.8);
+}
+
+.edit-btn:hover {
+  background-color: rgba(0, 123, 255, 1);
+}
+
+.delete-btn {
   background-color: rgba(220, 53, 69, 0.8);
-  font-size: 0.9rem;
-  text-transform: none;
+}
+
+.delete-btn:hover {
+  background-color: rgba(220, 53, 69, 1);
 }
 
 .component-item button:hover {
@@ -471,8 +519,41 @@ input:checked + .toggle-slider:before {
   100% { box-shadow: 0 0 0 0 rgba(138, 67, 255, 0); }
 }
 
-button[onclick="addComponent()"] {
+#addComponentButton {
   animation: pulse 2s infinite;
+}
+
+/* Estilo para el estado vacío */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  text-align: center;
+  background-color: rgba(40, 40, 40, 0.2);
+  border-radius: 12px;
+  border: 1px dashed var(--glass-border);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 20px;
+}
+
+.empty-icon i {
+  opacity: 0.6;
+}
+
+.empty-text p {
+  margin: 10px 0;
+  color: var(--text-secondary);
+}
+
+.empty-text p:first-child {
+  font-weight: 500;
+  color: var(--text-color);
 }
 
 /* Media queries */
@@ -490,6 +571,29 @@ button[onclick="addComponent()"] {
   
   .actions {
     flex-direction: column;
+  }
+  
+  .component-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .component-actions {
+    width: 100%;
+    margin-top: 15px;
+    justify-content: flex-end;
+  }
+  
+  .component-details {
+    width: 100%;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .header p {
+    font-size: 1rem;
   }
 }
 

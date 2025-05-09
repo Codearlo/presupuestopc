@@ -7,8 +7,9 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="js/script.js"></script>
+  <!-- Cargar jsPDF antes de nuestro script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Nuestro script se carga al final para asegurar que el DOM esté listo -->
 </head>
 <body>
   <div class="header">
@@ -24,15 +25,15 @@
           <div class="form-group">
             <label>Categoría</label>
             <select name="category" id="componentCategory">
-              <option value="cpu">CPU (Procesador)</option>
-              <option value="gpu">GPU (Tarjeta Gráfica)</option>
-              <option value="ram">RAM</option>
-              <option value="case">Case</option>
-              <option value="ssd">SSD</option>
-              <option value="placa">Placa Base</option>
-              <option value="psu">PSU (Fuente de Poder)</option>
-              <option value="cooler">Cooler</option>
-              <option value="otros">Otros</option>
+              <option value="CPU">CPU (Procesador)</option>
+              <option value="GPU">GPU (Tarjeta Gráfica)</option>
+              <option value="RAM">RAM</option>
+              <option value="Case">Case</option>
+              <option value="SSD">SSD</option>
+              <option value="Placa">Placa Base</option>
+              <option value="PSU">PSU (Fuente de Poder)</option>
+              <option value="Cooler">Cooler</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
           <div class="form-group">
@@ -43,7 +44,7 @@
             <label>Precio (S/)</label>
             <input type="number" name="price" id="componentPrice" step="0.01" min="0" placeholder="0.00">
           </div>
-          <button type="button" onclick="addComponent()">Agregar Componente</button>
+          <button type="button" id="addComponentButton">Agregar Componente</button>
         </form>
       </div>
       <div class="right-section">
@@ -52,6 +53,13 @@
           <div class="summary-item">
             <span>Subtotal:</span>
             <span id="subtotal">S/ 0.00</span>
+          </div>
+          <div class="igv-toggle-container">
+            <label class="toggle">
+              <input type="checkbox" id="igvIncluded" checked>
+              <span class="toggle-slider"></span>
+            </label>
+            <span>Precios incluyen IGV</span>
           </div>
           <div class="summary-item">
             <span>IGV (18%):</span>
@@ -65,18 +73,33 @@
         </div>
         <div class="summary-note">
           <i class="fas fa-info-circle"></i>
-          Los precios incluyen IGV. Puedes editar o eliminar componentes en la lista de abajo.
+          Los precios incluyen IGV por defecto. Puedes cambiar esta opción con el interruptor de arriba.
         </div>
       </div>
     </div>
 
-    <div class="selected-components">
+    <div class="selected-components" id="componentsContainer">
       <h2>Componentes Seleccionados</h2>
-      <ul class="component-list" id="componentList"></ul>
+      
+      <!-- Estado vacío - se muestra cuando no hay componentes -->
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="empty-text">
+          <p>No has agregado ningún componente a tu presupuesto.</p>
+          <p>Comienza agregando componentes desde el formulario superior.</p>
+        </div>
+      </div>
+      
+      <!-- Lista de componentes - se muestra cuando hay componentes -->
+      <div class="component-list" id="componentList"></div>
     </div>
   </div>
 
   <div id="printable" style="display:none;"></div>
 
+  <!-- Cargar nuestro script al final para asegurar que el DOM esté listo -->
+  <script src="js/script.js"></script>
 </body>
 </html>
