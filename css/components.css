@@ -14,10 +14,6 @@
   overflow: hidden;
 }
 
-.selected-components h2 {
-  margin-bottom: 25px;
-}
-
 .selected-components::before {
   content: '';
   position: absolute;
@@ -58,7 +54,7 @@
 }
 
 /* Estilos para totales de categoría */
-.total-category {
+.category-total {
   color: var(--accent-color);
   font-weight: 600;
   margin-left: auto;
@@ -77,7 +73,7 @@
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid var(--glass-border);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   border-left: 3px solid var(--accent-color);
   position: relative;
@@ -88,6 +84,31 @@
   transform: translateX(5px);
   background-color: rgba(60, 60, 60, 0.5);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Agregar efecto de brillo sutíl para componentes */
+.component-item::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(-45deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.component-item:hover::after {
+  opacity: 1;
 }
 
 /* Colores específicos por tipo de componente */
@@ -156,52 +177,6 @@
 .component-actions {
   display: flex;
   gap: 10px;
-}
-
-.component-actions button {
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.component-actions button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.component-actions button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.edit-btn {
-  background-color: rgba(0, 123, 255, 0.8);
-}
-
-.edit-btn:hover {
-  background-color: rgba(0, 123, 255, 1);
-}
-
-.delete-btn {
-  background-color: rgba(220, 53, 69, 0.8);
-}
-
-.delete-btn:hover {
-  background-color: rgba(220, 53, 69, 1);
-}
-
-/* Animación para botones */
-.component-actions button i {
-  transition: all 0.2s ease;
-}
-
-.component-actions button:hover i {
-  transform: scale(1.2);
 }
 
 /* Estilo para el estado vacío */
@@ -350,188 +325,31 @@
 .component-item.new {
   animation: newItem 0.5s ease-out forwards;
 }
-/* components.css - Estilos para la visualización de componentes */
 
-/* Sección de componentes seleccionados */
-.selected-components {
-  margin-top: 40px;
-  padding: 25px;
-  background-color: var(--glass-bg);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-}
-
-/* Estilos para la lista de componentes */
-.component-list {
-  padding: 0;
-}
-
-/* Estilo para las categorías de componentes */
-.component-category {
-  color: var(--text-color);
-  font-size: 1.2rem;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid var(--glass-border);
-  padding-bottom: 10px;
-}
-
-/* Estilo para cada ítem de componente */
-.component-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  padding: 15px;
-  background-color: rgba(50, 50, 50, 0.4);
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid var(--glass-border);
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.component-item:hover {
-  transform: translateX(5px);
-  background-color: rgba(60, 60, 60, 0.4);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Detalles del componente (nombre y precio) */
-.component-details {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.component-name {
-  font-weight: 500;
-  font-size: 1.05rem;
-  margin-bottom: 5px;
-}
-
-.component-price {
-  color: var(--accent-color);
-  font-weight: 700;
-}
-
-/* Acciones del componente (botones) */
-.component-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.component-actions button {
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.edit-btn {
-  background-color: rgba(0, 123, 255, 0.8);
-}
-
-.edit-btn:hover {
-  background-color: rgba(0, 123, 255, 1);
-}
-
-.delete-btn {
-  background-color: rgba(220, 53, 69, 0.8);
-}
-
-.delete-btn:hover {
-  background-color: rgba(220, 53, 69, 1);
-}
-
-.component-item button:hover {
-  background-color: rgba(220, 53, 69, 1);
-  transform: translateY(-2px);
-}
-
-/* Estilo para el estado vacío */
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 20px;
-  text-align: center;
-  background-color: rgba(40, 40, 40, 0.2);
-  border-radius: 12px;
-  border: 1px dashed var(--glass-border);
-}
-
-.empty-icon {
-  font-size: 3rem;
-  color: rgba(255, 255, 255, 0.3);
-  margin-bottom: 20px;
-}
-
-.empty-icon i {
-  opacity: 0.6;
-}
-
-.empty-text p {
-  margin: 10px 0;
-  color: var(--text-secondary);
-}
-
-.empty-text p:first-child {
-  font-weight: 500;
-  color: var(--text-color);
-}
-
-/* Resumen del presupuesto */
-.summary {
-  background-color: rgba(50, 50, 50, 0.4);
-  padding: 20px;
-  border-radius: 12px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--glass-border);
-}
-
-.summary-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-.summary-item span {
-  font-weight: 500;
-}
-
-.summary-item span:last-child {
-  color: var(--accent-color);
-  letter-spacing: 0.5px;
-}
-
-.summary hr {
-  border: none;
-  height: 1px;
-  background-color: var(--glass-border);
-  margin: 15px 0;
-}
-
-.summary-note {
-  background-color: rgba(138, 67, 255, 0.1);
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 20px;
-  font-size: 0.9rem;
-  border-left: 3px solid var(--accent-color);
-  color: var(--text-secondary);
-}
-
-.summary-note i {
-  margin-right: 8px;
-  color: var(--accent-color);
+/* Mejoras responsive */
+@media (max-width: 768px) {
+  .component-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .component-details {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .component-category-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .category-total {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+  
+  .component-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }

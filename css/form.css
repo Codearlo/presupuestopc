@@ -81,7 +81,7 @@ input::placeholder {
   font-weight: 400;
 }
 
-/* Estilos para botones */
+/* Estilos base para botones */
 button,
 input[type="button"],
 input[type="submit"] {
@@ -93,15 +93,15 @@ input[type="submit"] {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
 }
 
 button:hover,
@@ -109,20 +109,57 @@ input[type="button"]:hover,
 input[type="submit"]:hover {
   background-color: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(93, 109, 251, 0.4);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 button:active,
 input[type="button"]:active,
 input[type="submit"]:active {
   transform: translateY(1px);
-  box-shadow: 0 2px 8px rgba(93, 109, 251, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Botones con íconos */
 button i {
   margin-right: 8px;
   font-size: 1.1rem;
+}
+
+/* Efecto ripple para botones */
+button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+button:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* Botones en componentes específicos */
+#addComponentButton {
+  width: 100%;
+  background-color: var(--accent-color);
+  padding: 14px 20px;
+  margin-top: 10px;
+  animation: pulse 2s infinite;
+}
+
+#addComponentButton:hover {
+  background-color: var(--accent-hover);
 }
 
 /* Estilos para botones de acciones */
@@ -135,65 +172,181 @@ button i {
 }
 
 .actions button {
-  flex: 1;
+  flex: 1 1 calc(50% - 10px);
   min-width: calc(25% - 8px);
-  padding: 10px 10px;
+  padding: 12px 15px;
   font-size: 0.9rem;
   border-radius: 8px;
   letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-transform: none;
 }
 
 /* Botones de colores */
 .actions button.red,
+#clearButton,
 button[id="limpiarTodo"],
+button[value="Limpiar Todo"],
 button[onclick*="limpiarTodo"] {
   background-color: rgba(220, 53, 69, 0.9);
 }
 
 .actions button.red:hover,
+#clearButton:hover,
 button[id="limpiarTodo"]:hover,
+button[value="Limpiar Todo"]:hover,
 button[onclick*="limpiarTodo"]:hover {
   background-color: rgba(220, 53, 69, 1);
 }
 
 .actions button.orange,
+#loadButton,
 button[id="cargar"],
+button[value="Cargar"],
 button[onclick*="cargar"] {
   background-color: rgba(255, 136, 0, 0.9);
 }
 
 .actions button.orange:hover,
+#loadButton:hover,
 button[id="cargar"]:hover,
+button[value="Cargar"]:hover,
 button[onclick*="cargar"]:hover {
   background-color: rgba(255, 136, 0, 1);
 }
 
 .actions button.green,
+#saveButton,
 button[id="guardar"],
+button[value="Guardar"],
 button[onclick*="guardar"] {
   background-color: rgba(40, 167, 69, 0.9);
 }
 
 .actions button.green:hover,
+#saveButton:hover,
 button[id="guardar"]:hover,
+button[value="Guardar"]:hover,
 button[onclick*="guardar"]:hover {
   background-color: rgba(40, 167, 69, 1);
 }
 
 .actions button.blue,
+#exportButton,
 button[id="exportarPDF"],
+button[value="Exportar a PDF"],
 button[onclick*="export"] {
   background-color: var(--accent-color);
 }
 
 .actions button.blue:hover,
+#exportButton:hover,
 button[id="exportarPDF"]:hover,
+button[value="Exportar a PDF"]:hover,
 button[onclick*="export"]:hover {
   background-color: var(--accent-hover);
+}
+
+/* Estilos para los botones de edición y eliminación en componentes */
+.component-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.component-actions button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.component-actions button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.component-actions button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.edit-btn {
+  background-color: rgba(0, 123, 255, 0.8);
+}
+
+.edit-btn:hover {
+  background-color: rgba(0, 123, 255, 1);
+}
+
+.delete-btn {
+  background-color: rgba(220, 53, 69, 0.8);
+}
+
+.delete-btn:hover {
+  background-color: rgba(220, 53, 69, 1);
+}
+
+/* Animación para botones */
+.component-actions button i {
+  transition: all 0.2s ease;
+  margin-right: 0; /* Anular el margen para los botones de acciones del componente */
+}
+
+.component-actions button:hover i {
+  transform: scale(1.2);
+}
+
+/* Botones para modales */
+.modal-content button {
+  padding: 10px 20px;
+  margin-top: 15px;
+  margin-right: 10px;
+  font-size: 0.9rem;
+  text-transform: none;
+}
+
+#guardarPresupuestoBtn {
+  background-color: rgba(40, 167, 69, 0.9);
+}
+
+#guardarPresupuestoBtn:hover {
+  background-color: rgba(40, 167, 69, 1);
+}
+
+#cerrarModalBtn, 
+#cerrarLoadModalBtn {
+  background-color: rgba(108, 117, 125, 0.9);
+}
+
+#cerrarModalBtn:hover,
+#cerrarLoadModalBtn:hover {
+  background-color: rgba(108, 117, 125, 1);
+}
+
+/* Botones en el listado de presupuestos */
+.presupuesto-item .btn-load {
+  background-color: rgba(0, 123, 255, 0.9);
+  margin-right: 8px;
+  padding: 8px 15px;
+  font-size: 0.85rem;
+}
+
+.presupuesto-item .btn-load:hover {
+  background-color: rgba(0, 123, 255, 1);
+}
+
+.presupuesto-item .btn-delete {
+  background-color: rgba(220, 53, 69, 0.9);
+  padding: 8px 15px;
+  font-size: 0.85rem;
+}
+
+.presupuesto-item .btn-delete:hover {
+  background-color: rgba(220, 53, 69, 1);
 }
 
 /* Estilos para el interruptor de IGV */
@@ -281,81 +434,39 @@ input:checked + .toggle-slider:before {
   font-size: 1.2rem;
 }
 
-/* Solución específica para los botones que no se renderizan correctamente */
-.right-section > div:last-child button,
-.right-section > .info-message + div button,
-.summary-note + div button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(220, 53, 69, 0.9);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  margin: 5px;
-  font-size: 0.9rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+/* Mejorar visualización en responsive */
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .actions button {
+    flex: 1 1 calc(50% - 10px);
+    min-width: calc(50% - 10px);
+    font-size: 0.85rem;
+    padding: 10px 12px;
+  }
+  
+  .component-actions {
+    width: 100%;
+    margin-top: 10px;
+    justify-content: flex-end;
+  }
+  
+  .igv-toggle-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .igv-toggle-container .toggle {
+    margin-bottom: 10px;
+  }
 }
 
-.right-section > div:last-child button:nth-child(1),
-.right-section > .info-message + div button:nth-child(1),
-.summary-note + div button:nth-child(1) {
-  background-color: rgba(220, 53, 69, 0.9);
-}
-
-.right-section > div:last-child button:nth-child(2),
-.right-section > .info-message + div button:nth-child(2),
-.summary-note + div button:nth-child(2) {
-  background-color: rgba(255, 136, 0, 0.9);
-}
-
-.right-section > div:last-child button:nth-child(3),
-.right-section > .info-message + div button:nth-child(3),
-.summary-note + div button:nth-child(3) {
-  background-color: rgba(40, 167, 69, 0.9);
-}
-
-.right-section > div:last-child button:nth-child(4),
-.right-section > .info-message + div button:nth-child(4),
-.summary-note + div button:nth-child(4) {
-  background-color: var(--accent-color);
-}
-
-/* Estilo adicional para los botones de acción específicos */
-button[value="Limpiar Todo"],
-button[value="Cargar"],
-button[value="Guardar"],
-button[value="Exportar a PDF"] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  margin: 5px;
-  font-size: 0.9rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-button[value="Limpiar Todo"] {
-  background-color: rgba(220, 53, 69, 0.9);
-}
-
-button[value="Cargar"] {
-  background-color: rgba(255, 136, 0, 0.9);
-}
-
-button[value="Guardar"] {
-  background-color: rgba(40, 167, 69, 0.9);
-}
-
-button[value="Exportar a PDF"] {
-  background-color: var(--accent-color);
+@media (max-width: 576px) {
+  .actions button {
+    flex: 1 1 100%;
+    margin-bottom: 8px;
+  }
 }
