@@ -1,0 +1,537 @@
+/* components.css - Estilos para la visualización de componentes */
+
+/* Sección de componentes seleccionados */
+.selected-components {
+  margin-top: 40px;
+  padding: 25px;
+  background-color: var(--glass-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.selected-components h2 {
+  margin-bottom: 25px;
+}
+
+.selected-components::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-hover));
+  opacity: 0.8;
+}
+
+/* Estilos para la lista de componentes */
+.component-list {
+  padding: 0;
+}
+
+/* Estilo para las categorías de componentes */
+.component-category {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.component-category::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Estilos para totales de categoría */
+.total-category {
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-left: auto;
+  font-size: 0.95rem;
+}
+
+/* Estilo para cada ítem de componente */
+.component-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: rgba(50, 50, 50, 0.4);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-left: 3px solid var(--accent-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.component-item:hover {
+  transform: translateX(5px);
+  background-color: rgba(60, 60, 60, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Colores específicos por tipo de componente */
+.component-item[data-category="CPU"] {
+  border-left-color: var(--cpu-color);
+}
+
+.component-item[data-category="GPU"] {
+  border-left-color: var(--gpu-color);
+}
+
+.component-item[data-category="RAM"] {
+  border-left-color: var(--ram-color);
+}
+
+.component-item[data-category="SSD"] {
+  border-left-color: var(--storage-color);
+}
+
+.component-item[data-category="Placa"] {
+  border-left-color: var(--motherboard-color);
+}
+
+.component-item[data-category="PSU"] {
+  border-left-color: var(--psu-color);
+}
+
+.component-item[data-category="Case"] {
+  border-left-color: var(--case-color);
+}
+
+.component-item[data-category="Cooler"] {
+  border-left-color: var(--cooler-color);
+}
+
+/* Detalles del componente (nombre y precio) */
+.component-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.component-name {
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.component-price {
+  color: var(--accent-color);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.component-price::before {
+  content: "S/";
+  margin-right: 3px;
+  opacity: 0.8;
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+/* Acciones del componente (botones) */
+.component-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.component-actions button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.component-actions button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.component-actions button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.edit-btn {
+  background-color: rgba(0, 123, 255, 0.8);
+}
+
+.edit-btn:hover {
+  background-color: rgba(0, 123, 255, 1);
+}
+
+.delete-btn {
+  background-color: rgba(220, 53, 69, 0.8);
+}
+
+.delete-btn:hover {
+  background-color: rgba(220, 53, 69, 1);
+}
+
+/* Animación para botones */
+.component-actions button i {
+  transition: all 0.2s ease;
+}
+
+.component-actions button:hover i {
+  transform: scale(1.2);
+}
+
+/* Estilo para el estado vacío */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  background-color: rgba(40, 40, 40, 0.2);
+  border-radius: 12px;
+  border: 1px dashed var(--glass-border);
+  margin-top: 10px;
+}
+
+.empty-icon {
+  font-size: 3.5rem;
+  color: rgba(255, 255, 255, 0.15);
+  margin-bottom: 20px;
+  background-color: rgba(138, 67, 255, 0.1);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon i {
+  opacity: 0.7;
+}
+
+.empty-text p {
+  margin: 10px 0;
+  color: var(--text-secondary);
+}
+
+.empty-text p:first-child {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+/* Resumen del presupuesto */
+.summary {
+  background-color: rgba(50, 50, 50, 0.4);
+  padding: 25px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.summary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(138, 67, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 5px;
+}
+
+.summary-item span {
+  font-weight: 500;
+}
+
+.summary-item span:first-child {
+  color: var(--text-secondary);
+}
+
+.summary-item span:last-child {
+  color: var(--accent-color);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+/* Item total con estilo especial */
+.summary-item.total {
+  border-top: 1px solid var(--glass-border);
+  margin-top: 15px;
+  padding-top: 15px;
+}
+
+.summary-item.total span:first-child {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.summary-item.total span:last-child {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.summary hr {
+  border: none;
+  height: 1px;
+  background-color: var(--glass-border);
+  margin: 15px 0;
+}
+
+.summary-note {
+  background-color: rgba(138, 67, 255, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  border-left: 3px solid var(--accent-color);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+}
+
+.summary-note i {
+  margin-right: 10px;
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  margin-top: 2px;
+}
+
+/* Animación para nuevos componentes añadidos */
+@keyframes newItem {
+  0% { 
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% { 
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.component-item.new {
+  animation: newItem 0.5s ease-out forwards;
+}
+/* components.css - Estilos para la visualización de componentes */
+
+/* Sección de componentes seleccionados */
+.selected-components {
+  margin-top: 40px;
+  padding: 25px;
+  background-color: var(--glass-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Estilos para la lista de componentes */
+.component-list {
+  padding: 0;
+}
+
+/* Estilo para las categorías de componentes */
+.component-category {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 10px;
+}
+
+/* Estilo para cada ítem de componente */
+.component-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: rgba(50, 50, 50, 0.4);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.component-item:hover {
+  transform: translateX(5px);
+  background-color: rgba(60, 60, 60, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Detalles del componente (nombre y precio) */
+.component-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.component-name {
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin-bottom: 5px;
+}
+
+.component-price {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* Acciones del componente (botones) */
+.component-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.component-actions button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn {
+  background-color: rgba(0, 123, 255, 0.8);
+}
+
+.edit-btn:hover {
+  background-color: rgba(0, 123, 255, 1);
+}
+
+.delete-btn {
+  background-color: rgba(220, 53, 69, 0.8);
+}
+
+.delete-btn:hover {
+  background-color: rgba(220, 53, 69, 1);
+}
+
+.component-item button:hover {
+  background-color: rgba(220, 53, 69, 1);
+  transform: translateY(-2px);
+}
+
+/* Estilo para el estado vacío */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  text-align: center;
+  background-color: rgba(40, 40, 40, 0.2);
+  border-radius: 12px;
+  border: 1px dashed var(--glass-border);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 20px;
+}
+
+.empty-icon i {
+  opacity: 0.6;
+}
+
+.empty-text p {
+  margin: 10px 0;
+  color: var(--text-secondary);
+}
+
+.empty-text p:first-child {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* Resumen del presupuesto */
+.summary {
+  background-color: rgba(50, 50, 50, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.summary-item span {
+  font-weight: 500;
+}
+
+.summary-item span:last-child {
+  color: var(--accent-color);
+  letter-spacing: 0.5px;
+}
+
+.summary hr {
+  border: none;
+  height: 1px;
+  background-color: var(--glass-border);
+  margin: 15px 0;
+}
+
+.summary-note {
+  background-color: rgba(138, 67, 255, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  border-left: 3px solid var(--accent-color);
+  color: var(--text-secondary);
+}
+
+.summary-note i {
+  margin-right: 8px;
+  color: var(--accent-color);
+}

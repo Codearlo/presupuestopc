@@ -1,0 +1,361 @@
+/* forms.css - Estilos para formularios, inputs y botones */
+
+/* Estilos para grupos de formulario */
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+/* Estilos para inputs y selects */
+select,
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: rgba(30, 30, 30, 0.7);
+  color: var(--text-color);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilizado de selector desplegable */
+select {
+  background-image: 
+    linear-gradient(45deg, transparent 50%, var(--accent-color) 50%),
+    linear-gradient(135deg, var(--accent-color) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px);
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 30px;
+  cursor: pointer;
+}
+
+select option {
+  background-color: #1e1e1e;
+  color: var(--text-color);
+  padding: 10px;
+}
+
+select:focus {
+  background-image: 
+    linear-gradient(45deg, var(--accent-color) 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, var(--accent-color) 50%);
+  background-position:
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 20px) calc(1em + 2px);
+}
+
+/* Estados de foco para inputs */
+select:focus,
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(138, 67, 255, 0.2);
+}
+
+/* Placeholder personalizado */
+input::placeholder {
+  color: rgba(160, 160, 160, 0.6);
+  font-weight: 400;
+}
+
+/* Estilos para botones */
+button,
+input[type="button"],
+input[type="submit"] {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(93, 109, 251, 0.4);
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(93, 109, 251, 0.4);
+}
+
+/* Botones con íconos */
+button i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+/* Estilos para botones de acciones */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.actions button {
+  flex: 1;
+  min-width: calc(25% - 8px);
+  padding: 10px 10px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: none;
+}
+
+/* Botones de colores */
+.actions button.red,
+button[id="limpiarTodo"],
+button[onclick*="limpiarTodo"] {
+  background-color: rgba(220, 53, 69, 0.9);
+}
+
+.actions button.red:hover,
+button[id="limpiarTodo"]:hover,
+button[onclick*="limpiarTodo"]:hover {
+  background-color: rgba(220, 53, 69, 1);
+}
+
+.actions button.orange,
+button[id="cargar"],
+button[onclick*="cargar"] {
+  background-color: rgba(255, 136, 0, 0.9);
+}
+
+.actions button.orange:hover,
+button[id="cargar"]:hover,
+button[onclick*="cargar"]:hover {
+  background-color: rgba(255, 136, 0, 1);
+}
+
+.actions button.green,
+button[id="guardar"],
+button[onclick*="guardar"] {
+  background-color: rgba(40, 167, 69, 0.9);
+}
+
+.actions button.green:hover,
+button[id="guardar"]:hover,
+button[onclick*="guardar"]:hover {
+  background-color: rgba(40, 167, 69, 1);
+}
+
+.actions button.blue,
+button[id="exportarPDF"],
+button[onclick*="export"] {
+  background-color: var(--accent-color);
+}
+
+.actions button.blue:hover,
+button[id="exportarPDF"]:hover,
+button[onclick*="export"]:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Estilos para el interruptor de IGV */
+.igv-toggle-container {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  padding: 12px 15px;
+  background-color: rgba(138, 67, 255, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-color);
+}
+
+.igv-toggle-container span {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(60, 60, 60, 0.7);
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: var(--accent-color);
+}
+
+input:focus + .toggle-slider {
+  box-shadow: 0 0 1px var(--accent-color);
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}
+
+/* Mensajes informativos */
+.info-message {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: rgba(138, 67, 255, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-color);
+  margin: 15px 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.info-message i {
+  color: var(--accent-color);
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+/* Solución específica para los botones que no se renderizan correctamente */
+.right-section > div:last-child button,
+.right-section > .info-message + div button,
+.summary-note + div button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(220, 53, 69, 0.9);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.right-section > div:last-child button:nth-child(1),
+.right-section > .info-message + div button:nth-child(1),
+.summary-note + div button:nth-child(1) {
+  background-color: rgba(220, 53, 69, 0.9);
+}
+
+.right-section > div:last-child button:nth-child(2),
+.right-section > .info-message + div button:nth-child(2),
+.summary-note + div button:nth-child(2) {
+  background-color: rgba(255, 136, 0, 0.9);
+}
+
+.right-section > div:last-child button:nth-child(3),
+.right-section > .info-message + div button:nth-child(3),
+.summary-note + div button:nth-child(3) {
+  background-color: rgba(40, 167, 69, 0.9);
+}
+
+.right-section > div:last-child button:nth-child(4),
+.right-section > .info-message + div button:nth-child(4),
+.summary-note + div button:nth-child(4) {
+  background-color: var(--accent-color);
+}
+
+/* Estilo adicional para los botones de acción específicos */
+button[value="Limpiar Todo"],
+button[value="Cargar"],
+button[value="Guardar"],
+button[value="Exportar a PDF"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+button[value="Limpiar Todo"] {
+  background-color: rgba(220, 53, 69, 0.9);
+}
+
+button[value="Cargar"] {
+  background-color: rgba(255, 136, 0, 0.9);
+}
+
+button[value="Guardar"] {
+  background-color: rgba(40, 167, 69, 0.9);
+}
+
+button[value="Exportar a PDF"] {
+  background-color: var(--accent-color);
+}

@@ -1,0 +1,144 @@
+/* responsive.css - Versión simplificada */
+
+/* Pantallas medianas y tablets */
+@media (max-width: 992px) {
+  .container {
+    width: 95%;
+    max-width: 95%;
+    padding: 20px;
+  }
+  
+  .section {
+    gap: 20px;
+  }
+}
+
+/* Tablets y dispositivos pequeños */
+@media (max-width: 768px) {
+  .section {
+    flex-direction: column;
+  }
+  
+  .left-section,
+  .right-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .actions {
+    flex-wrap: wrap;
+  }
+  
+  .actions button {
+    flex: 1 1 calc(50% - 10px);
+    min-width: calc(50% - 10px);
+  }
+  
+  .component-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .component-actions {
+    width: 100%;
+    margin-top: 15px;
+    justify-content: flex-end;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .header p {
+    font-size: 1rem;
+  }
+  
+  .chart-legend {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .summary-item {
+    flex-direction: row;
+  }
+}
+
+/* Dispositivos móviles */
+@media (max-width: 576px) {
+  .container {
+    padding: 15px;
+    margin: 15px auto;
+  }
+  
+  .left-section,
+  .right-section {
+    padding: 15px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .actions button {
+    width: 100%;
+  }
+  
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  button {
+    padding: 12px 20px;
+  }
+  
+  .igv-toggle-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .igv-toggle-container .toggle {
+    margin-bottom: 10px;
+  }
+}
+
+/* Impresión */
+@media print {
+  body {
+    background: none !important;
+  }
+  
+  body * {
+    visibility: hidden;
+  }
+  
+  #printable, #printable * {
+    visibility: visible;
+    color: black !important;
+  }
+  
+  #printable {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: white !important;
+    padding: 20px;
+  }
+}
+
+/* Ajustes para navegadores que no soportan backdrop-filter */
+@supports not (backdrop-filter: blur(12px)) {
+  .container,
+  .left-section,
+  .right-section,
+  .summary,
+  .selected-components {
+    backdrop-filter: none;
+    background-color: rgba(25, 25, 25, 0.95);
+  }
+}
