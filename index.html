@@ -4,32 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Armador de Presupuesto PC</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins :wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/forms.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/chart.css">
+  <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Cargar jsPDF antes de nuestro script -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <!-- Nuestro script se carga al final para asegurar que el DOM esté listo -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
+
+  <!-- Scripts externos -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js "></script>
 </head>
 <body>
+  <!-- Header -->
   <div class="header">
     <h1><i class="fas fa-desktop"></i> Armador de Presupuesto PC</h1>
     <p>Crea y calcula el costo de tu PC ideal en soles peruanos (S/)</p>
   </div>
 
+  <!-- Contenedor principal -->
   <div class="container">
+    <!-- Formulario izquierdo -->
     <div class="section">
       <div class="left-section">
         <h2>Mi Presupuesto</h2>
         <form id="budgetForm">
           <div class="form-group">
-            <label>Categoría</label>
-            <select name="category" id="componentCategory">
+            <label for="componentCategory">Categoría</label>
+            <select id="componentCategory">
               <option value="CPU">CPU (Procesador)</option>
               <option value="GPU">GPU (Tarjeta Gráfica)</option>
               <option value="RAM">RAM</option>
@@ -42,16 +50,18 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Nombre del Componente</label>
-            <input type="text" name="name" id="componentName" placeholder="Ej: Intel Core i5-12400F">
+            <label for="componentName">Nombre del Componente</label>
+            <input type="text" id="componentName" placeholder="Ej: Intel Core i5-12400F">
           </div>
           <div class="form-group">
-            <label>Precio (S/)</label>
-            <input type="number" name="price" id="componentPrice" step="0.01" min="0" placeholder="0.00">
+            <label for="componentPrice">Precio (S/)</label>
+            <input type="number" id="componentPrice" step="0.01" min="0" placeholder="0.00">
           </div>
           <button type="button" id="addComponentButton">Agregar Componente</button>
         </form>
       </div>
+
+      <!-- Resumen derecho -->
       <div class="right-section">
         <h2>Resumen del Presupuesto</h2>
         <div class="summary">
@@ -71,22 +81,37 @@
             <span id="igv">S/ 0.00 (incluido)</span>
           </div>
           <hr>
-          <div class="summary-item">
+          <div class="summary-item total">
             <span>Total:</span>
             <span id="total">S/ 0.00</span>
           </div>
         </div>
-        <div class="summary-note">
+
+        <div class="info-message">
           <i class="fas fa-info-circle"></i>
-          Los precios incluyen IGV por defecto. Puedes cambiar esta opción con el interruptor de arriba.
+          <div>Los precios incluyen IGV por defecto. Puedes cambiar esta opción con el interruptor de arriba.</div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="actions">
+          <button id="clearButton" class="red"><i class="fas fa-trash"></i> Limpiar Todo</button>
+          <button id="loadButton" class="orange"><i class="fas fa-folder-open"></i> Cargar</button>
+          <button id="saveButton" class="green"><i class="fas fa-save"></i> Guardar</button>
+          <button id="exportButton" class="blue"><i class="fas fa-file-export"></i> Exportar a PDF</button>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="chart-container">
+          <canvas id="budgetChart"></canvas>
         </div>
       </div>
     </div>
 
+    <!-- Lista de componentes seleccionados -->
     <div class="selected-components" id="componentsContainer">
       <h2>Componentes Seleccionados</h2>
-      
-      <!-- Estado vacío - se muestra cuando no hay componentes -->
+
+      <!-- Estado vacío -->
       <div id="emptyState" class="empty-state">
         <div class="empty-icon">
           <i class="fas fa-file-alt"></i>
@@ -96,15 +121,39 @@
           <p>Comienza agregando componentes desde el formulario superior.</p>
         </div>
       </div>
-      
-      <!-- Lista de componentes - se muestra cuando hay componentes -->
-      <div class="component-list" id="componentList"></div>
+
+      <!-- Lista de componentes -->
+      <ul id="componentList"></ul>
     </div>
   </div>
 
+  <!-- Zona oculta para exportar PDF -->
   <div id="printable" style="display:none;"></div>
 
-  <!-- Cargar nuestro script al final para asegurar que el DOM esté listo -->
+  <!-- Contenedor de notificaciones -->
+  <div id="notification-container"></div>
+
+  <!-- Modales -->
+  <!-- Modal para guardar presupuesto -->
+  <div id="saveModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Guardar Presupuesto</h3>
+      <input type="text" id="presupuestoNombre" placeholder="Nombre del presupuesto" />
+      <button id="guardarPresupuestoBtn">Guardar</button>
+      <button id="cerrarModalBtn">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Modal para cargar presupuesto -->
+  <div id="loadModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Cargar Presupuesto</h3>
+      <div id="presupuestoLista"></div>
+      <button id="cerrarLoadModalBtn">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Script principal -->
   <script src="js/script.js"></script>
 </body>
 </html>
