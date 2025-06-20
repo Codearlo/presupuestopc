@@ -83,16 +83,16 @@
 
 /* Estilos para modales */
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(30, 30, 30, 0.45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(30, 30, 30, 0.45) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999 !important;
   animation: modalFadeIn 0.3s ease-out;
   backdrop-filter: blur(2px);
 }
@@ -103,18 +103,23 @@
 }
 
 .modal-content {
-  width: 400px;
-  max-height: 80vh;
+  margin: 0 !important;
+  position: relative !important;
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  width: 95vw;
+  max-width: 420px;
+  max-height: 85vh;
   overflow-y: auto;
-  background-color: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 18px;
+  padding: 32px 24px 24px 24px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25), 0 1.5px 8px rgba(255,152,0,0.10);
+  border: 2px solid #ffb347;
   animation: modalContentSlideIn 0.3s ease-out;
-  transition: background-color 0.5s ease, border-color 0.5s ease;
+  transition: background 0.5s, border-color 0.5s;
+  display: block !important;
 }
 
 @keyframes modalContentSlideIn {
