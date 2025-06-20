@@ -572,6 +572,9 @@ class PCBudgetBuilder {
     document.getElementById("cerrarModalBtn").onclick = () => {
       modal.style.display = "none";
     };
+    document.getElementById("cerrarModalBtnX").onclick = () => {
+      modal.style.display = "none";
+    };
   }
 
   showLoadDialog() {
@@ -633,6 +636,9 @@ class PCBudgetBuilder {
 
     modal.style.display = "flex";
     document.getElementById("cerrarLoadModalBtn").onclick = () => {
+      modal.style.display = "none";
+    };
+    document.getElementById("cerrarLoadModalBtnX").onclick = () => {
       modal.style.display = "none";
     };
   }
