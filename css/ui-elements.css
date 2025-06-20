@@ -84,8 +84,7 @@
 /* Estilos para modales */
 .modal {
   position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
+  inset: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
   background: rgba(30, 30, 30, 0.45) !important;
@@ -103,7 +102,7 @@
 }
 
 .modal-content {
-  margin: 0 !important;
+  margin: 0 auto !important;
   position: relative !important;
   left: 0 !important;
   top: 0 !important;
