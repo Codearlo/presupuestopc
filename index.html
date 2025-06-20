@@ -139,5 +139,17 @@
   <!--#include virtual="modals/loadModal.html" -->
 
   <script src="js/app.js"></script>
+  <script>
+    // Cargar modales externos dinámicamente
+    async function cargarModal(url) {
+      const resp = await fetch(url);
+      const html = await resp.text();
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+      document.body.appendChild(temp.firstElementChild);
+    }
+    cargarModal('modals/saveModal.html');
+    cargarModal('modals/loadModal.html');
+  </script>
 </body>
 </html>
