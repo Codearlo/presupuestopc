@@ -95,10 +95,11 @@
         <!-- Botones de acción -->
         <div class="actions">
           <button id="clearButton" class="red"><i class="fas fa-trash"></i> Limpiar Todo</button>
-          <button id="loadButton" class="orange"><i class="fas fa-folder-open"></i> Cargar</button>
+          <button id="loadButton" class="orange destacado"><i class="fas fa-folder-open"></i> <strong>Cargar Presupuesto</strong></button>
           <button id="saveButton" class="green"><i class="fas fa-save"></i> Guardar</button>
           <button id="exportButton" class="blue"><i class="fas fa-file-export"></i> Exportar a PDF</button>
         </div>
+        <p class="ayuda-cargar">¿Tienes presupuestos guardados? Haz clic en <b>Cargar Presupuesto</b> para verlos o restaurar uno.</p>
 
         <!-- Gráfico -->
         <div class="chart-container">
@@ -148,6 +149,7 @@
   <div id="loadModal" class="modal" style="display:none;">
     <div class="modal-content">
       <h3>Cargar Presupuesto</h3>
+      <p class="ayuda-modal">Selecciona un presupuesto para cargarlo o elimínalo si ya no lo necesitas.</p>
       <div id="presupuestoLista"></div>
       <button id="cerrarLoadModalBtn">Cerrar</button>
     </div>

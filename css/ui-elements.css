@@ -125,20 +125,58 @@
 .presupuesto-item {
   padding: 15px;
   margin-bottom: 10px;
-  background-color: rgba(50, 50, 50, 0.4);
+  background-color: #fffbe7;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 0.2s ease;
   cursor: pointer;
-  border-left: 3px solid transparent;
+  border-left: 4px solid #ff9800;
+  color: #222;
 }
 
 .presupuesto-item:hover {
-  background-color: rgba(60, 60, 60, 0.6);
-  transform: translateX(5px);
-  border-left-color: var(--accent-color);
+  background-color: #fff3c0;
+  transform: translateX(5px) scale(1.02);
+  border-left-color: #ffb347;
+}
+
+.presupuesto-item .item-info strong {
+  color: #ff9800;
+}
+
+.presupuesto-item .btn-load {
+  background-color: #ff9800;
+  color: #fff;
+  border-radius: 6px;
+  margin-right: 8px;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  transition: background 0.2s;
+}
+
+.presupuesto-item .btn-load:hover {
+  background-color: #ffb347;
+  color: #222;
+}
+
+.presupuesto-item .btn-delete {
+  background-color: #e57373;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  transition: background 0.2s;
+}
+
+.presupuesto-item .btn-delete:hover {
+  background-color: #ff5252;
+  color: #fff;
 }
 
 /* Barra de progreso para presupuesto */

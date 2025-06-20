@@ -470,3 +470,31 @@ input:checked + .toggle-slider:before {
     margin-bottom: 8px;
   }
 }
+
+/* Botón destacado para cargar presupuesto */
+.destacado {
+  border: 2px solid var(--accent-color);
+  background: linear-gradient(90deg, #ffb347 0%, #ffcc80 100%);
+  color: #222 !important;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(255, 180, 71, 0.2);
+  transition: background 0.3s, color 0.3s;
+}
+.destacado:hover {
+  background: linear-gradient(90deg, #ffcc80 0%, #ffb347 100%);
+  color: #000 !important;
+}
+
+.ayuda-cargar {
+  margin: 10px 0 0 0;
+  color: #ff9800;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.ayuda-modal {
+  color: #ff9800;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  text-align: left;
+}
