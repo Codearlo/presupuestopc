@@ -134,23 +134,31 @@
   <!-- Contenedor de notificaciones -->
   <div id="notification-container"></div>
 
-  <!-- Modales serán incluidos como archivos externos -->
-  <!-- Los modales se cargan dinámicamente por JS, no mostrar nada aquí -->
+  <!-- Modales -->
+  <!-- Modal para guardar presupuesto -->
+  <div id="saveModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <button class="close-modal" id="cerrarModalBtnX" aria-label="Cerrar">&times;</button>
+      <h3>Guardar Presupuesto</h3>
+      <input type="text" id="presupuestoNombre" placeholder="Nombre del presupuesto" />
+      <button id="guardarPresupuestoBtn">Guardar</button>
+      <button id="cerrarModalBtn">Cancelar</button>
+    </div>
+  </div>
 
+  <!-- Modal para cargar presupuesto -->
+  <div id="loadModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <button class="close-modal" id="cerrarLoadModalBtnX" aria-label="Cerrar">&times;</button>
+      <h3>Cargar Presupuesto</h3>
+      <p class="ayuda-modal">Selecciona un presupuesto para cargarlo o elimínalo si ya no lo necesitas.</p>
+      <div id="presupuestoLista"></div>
+      <button id="cerrarLoadModalBtn">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Script principal -->
   <script src="js/app.js"></script>
-  <script>
-    // Cargar modales externos dinámicamente SOLO cuando el DOM esté listo
-    document.addEventListener('DOMContentLoaded', function () {
-      async function cargarModal(url) {
-        const resp = await fetch(url);
-        const html = await resp.text();
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
-        document.body.appendChild(temp.firstElementChild);
-      }
-      cargarModal('modals/saveModal.html');
-      cargarModal('modals/loadModal.html');
-    });
-  </script>
+  <!-- Fin de scripts -->
 </body>
 </html>
